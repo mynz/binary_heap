@@ -14,17 +14,19 @@ let to_list = Array.to_list;;
 type heap = Null | Lf of int | Br of int * heap * heap;;
 
 (* let h = Null;; *)
-let h = Br (7, Null, Null)
-
+(* let h = Br (7, Null, Null) *)
+let h = Br (1,
+                (Br (3, (Lf 7), Null)),
+                Null);;
 
 let rec print_heap = function
-    Null -> "[null]"
-    | Lf v -> ("[" ^ (string_of_int v) ^ "]")
-    | Br (v, l, r) -> ("[br: L: " ^ (string_of_int v) ^ (print_heap l) ^ ", R: " ^ (print_heap r)  ^ "]");;
-
+      Null -> "null"
+    | Lf v -> string_of_int v
+    | Br (v, l, r) -> let ls = print_heap l and rs = print_heap r
+        in ("[br: L: " ^ ls ^ ", R: " ^ rs  ^ "]");;
+           
 
 print_string (print_heap h);;
-
 
 
 let up h v = 
