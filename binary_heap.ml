@@ -20,22 +20,19 @@ let h = Br (1,
                 Null);;
 
 let rec string_of_heap = function
-      Null -> "null"
+      Null -> "Null"
     | Lf v -> string_of_int v
     | Br (v, l, r) -> let ls = string_of_heap l and rs = string_of_heap r
-        in ("[br: L: " ^ ls ^ ", R: " ^ rs  ^ "]");;
+        in ("[br(" ^ (string_of_int v) ^ "): L: " ^ ls ^ ", R: " ^ rs  ^ "]");;
+
+let print_heap h = print_string ((string_of_heap h) ^ "\n");;
            
+print_heap h;;
 
-print_string (string_of_heap h);;
-
-
-let up h v = 
-    Br (v, Null, Null) ;;
+let buble_up h v = 
+    Br (v, h, Null) ;;
 
 
-
-
-
-
+print_heap (buble_up h 777);;
 
 
