@@ -19,14 +19,14 @@ let h = Br (1,
                 (Br (3, (Lf 7), Null)),
                 Null);;
 
-let rec print_heap = function
+let rec string_of_heap = function
       Null -> "null"
     | Lf v -> string_of_int v
-    | Br (v, l, r) -> let ls = print_heap l and rs = print_heap r
+    | Br (v, l, r) -> let ls = string_of_heap l and rs = string_of_heap r
         in ("[br: L: " ^ ls ^ ", R: " ^ rs  ^ "]");;
            
 
-print_string (print_heap h);;
+print_string (string_of_heap h);;
 
 
 let up h v = 
